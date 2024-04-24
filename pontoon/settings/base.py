@@ -730,10 +730,7 @@ def _allowed_hosts():
     return result
 
 
-# ALLOWED_HOSTS = lazy(_allowed_hosts, list)()
-ALLOWED_HOSTS = (
-    [os.environ["WEBSITE_HOSTNAME"]] if "WEBSITE_HOSTNAME" in os.environ else []
-)
+ALLOWED_HOSTS = lazy(_allowed_hosts, list)()
 
 # Auth
 # The first hasher in this list will be used for new passwords.
@@ -787,11 +784,11 @@ ENGAGE_ROBOTS = False
 # Store the CSRF token in the user's session instead of in a cookie.
 CSRF_USE_SESSIONS = True
 
-CSRF_TRUSTED_ORIGINS = (
-    ["https://" + os.environ["WEBSITE_HOSTNAME"]]
-    if "WEBSITE_HOSTNAME" in os.environ
-    else []
-)
+# CSRF_TRUSTED_ORIGINS = (
+#     ["https://" + os.environ["WEBSITE_HOSTNAME"]]
+#     if "WEBSITE_HOSTNAME" in os.environ
+#     else []
+# )
 
 # Set X-Frame-Options to DENY by default on all responses.
 X_FRAME_OPTIONS = "DENY"
