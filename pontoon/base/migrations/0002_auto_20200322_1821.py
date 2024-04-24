@@ -78,7 +78,7 @@ MIGRATION_0002_LOCALES = [
         "population": 55000,
     },
     {
-        "code": "nb-NO",
+        "code": "nb",
         "google_translate_code": "no",
         "ms_translator_code": "",
         "ms_terminology_code": "nb-no",
@@ -90,7 +90,7 @@ MIGRATION_0002_LOCALES = [
         "population": 5208000,
     },
     {
-        "code": "nn-NO",
+        "code": "nn",
         "google_translate_code": "",
         "ms_translator_code": "",
         "ms_terminology_code": "nn-no",
