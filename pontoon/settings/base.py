@@ -782,7 +782,8 @@ LOGIN_REDIRECT_URL_FAILURE = "/"
 ENGAGE_ROBOTS = False
 
 # Store the CSRF token in the user's session instead of in a cookie.
-CSRF_USE_SESSIONS = True
+# Not popular on Azure, so it's disabled by default.
+# CSRF_USE_SESSIONS = True
 
 # CSRF_TRUSTED_ORIGINS = (
 #     ["https://" + os.environ["WEBSITE_HOSTNAME"]]
