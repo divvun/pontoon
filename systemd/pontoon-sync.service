@@ -1,0 +1,10 @@
+[Unit]
+Description=Synchronize translations with projects
+
+[Service]
+User=django
+WorkingDirectory = %h/pontoon
+ExecStart = %h/pontoon/venv/bin/python manage.py sync_project
+
+[Install]
+WantedBy=default.target

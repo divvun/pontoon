@@ -1,0 +1,10 @@
+[Unit]
+Description=Clear expired sessions
+
+[Service]
+User=django
+WorkingDirectory = %h/pontoon
+ExecStart = %h/pontoon/venv/bin/python manage.py clearsessions
+
+[Install]
+WantedBy=default.target

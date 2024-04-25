@@ -1,0 +1,10 @@
+[Unit]
+Description=Collect insights
+
+[Service]
+User=django
+WorkingDirectory = %h/pontoon
+ExecStart = %h/pontoon/venv/bin/python manage.py collect_insights
+
+[Install]
+WantedBy=default.target

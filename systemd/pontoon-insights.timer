@@ -1,0 +1,10 @@
+[Unit]
+Description=Collect insights every day
+
+[Timer]
+OnCalendar=daily
+Unit=pontoon-insights.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target

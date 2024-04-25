@@ -1,0 +1,10 @@
+[Unit]
+Description=Clear expired sessions
+
+[Timer]
+OnCalendar=daily
+Unit=pontoon-clearsessions.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target

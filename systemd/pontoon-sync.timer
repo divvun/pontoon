@@ -1,0 +1,10 @@
+[Unit]
+Description=Sync translations every hour
+
+[Timer]
+OnCalendar=hourly
+Unit=pontoon-sync.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target
