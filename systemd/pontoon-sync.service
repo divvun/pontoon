@@ -4,7 +4,7 @@ Description=Synchronize translations with projects
 [Service]
 Environment = "DOTENV=%h/pontoon/.env"
 WorkingDirectory = %h/pontoon
-ExecStart = %h/pontoon/venv/bin/python manage.py sync_project
+ExecStart = %h/pontoon/venv/bin/python manage.py sync_projects
 
 [Install]
 WantedBy=default.target
