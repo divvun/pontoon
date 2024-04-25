@@ -13,4 +13,4 @@ ExecStopPost = rm -rf %h/pontoon/run
 PrivateTmp = true
 
 [Install]
-WantedBy = multi-user.target
+WantedBy = default.target

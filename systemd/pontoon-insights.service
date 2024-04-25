@@ -2,7 +2,7 @@
 Description=Collect insights
 
 [Service]
-User=django
+Environment = "DOTENV=%h/pontoon/.env"
 WorkingDirectory = %h/pontoon
 ExecStart = %h/pontoon/venv/bin/python manage.py collect_insights
 
