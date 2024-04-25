@@ -8,7 +8,7 @@ PermissionsStartOnly = true
 PIDFile = %h/pontoon/run/satni.pid
 WorkingDirectory = %h/pontoon
 ExecStartPre = mkdir %h/pontoon/run
-ExecStart = virtualenv-path/gunicorn pontoon.wsgi -b 0.0.0.0:8000 --pid run/satni.pid
+ExecStart = %h/pontoon/venv/bin/gunicorn pontoon.wsgi -b 0.0.0.0:8000 --pid run/satni.pid
 ExecStopPost = rm -rf %h/pontoon/run
 PrivateTmp = true
 
