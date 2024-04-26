@@ -91,9 +91,31 @@ Innhold
 
 ```sh
 ./manage.py migrate # setter opp bl.a. localer
-./manage.py createsuperuser
 ./manage.py collectstatic # samler opp frontend-filene og legger dem på rett plass
 ./manage.py update_auth_providers # sørger for at OAuth fungerer
+```
+
+Kjør `./manage.py runserver` for å se om alt funker.
+
+### Logg inn i pontoon, lag superbruker
+
+Siden github innlogging er klar nå, så er det bare å logge seg inn i pontoon.
+
+Når det er gjort, logg inn på vm-maskina, kjør
+
+```sh
+cd pontoon
+. venv/bin/activate
+./manage.py shell
+```
+
+og siden
+
+```python
+from django.contrib.auth.models import User
+>>> user = User.objects.get(email="<eposten-til-brukeren-som-nettopp-logget-inn>")
+>>> user.is_superuser=True
+>>> user.save()
 ```
 
 ## installere systemd og starte pontoon
