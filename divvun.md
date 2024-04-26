@@ -2,13 +2,42 @@
 
 ## Lage vm
 
-## Lage db
+```sh
+export RANDOM_ID=NonRandomId
+export MY_RESOURCE_GROUP_NAME=MyGroup
+export MY_VM_NAME="myVM$RANDOM_ID"
+export MY_USERNAME=myUser
+export MY_VM_IMAGE="Canonical:0001-com-ubuntu-minimal-jammy:minimal-22_04-lts-gen2:latest"
+export IP_ADDRESS=$(az vm show --show-details --resource-group $MY_RESOURCE_GROUP_NAME --name $MY_VM_NAME --query publicIps --output tsv)%
+```
 
-## Åpne port 80 og 443
+```sh
+az vm create --resource-group $MY_RESOURCE_GROUP_NAME --name $MY_VM_NAME --image $MY_VM_IMAGE --admin-username $MY_USERNAME --assign-identity --generate-ssh-keys --public-ip-sku Standard
+```
 
 ## nginx
 
+```sh
+sudo apt install nginx
+sudo systemctl enable nginx
+sudo systemcl start nginx
+```
+
+Sjekk om alt står bra til med nginx: `systemctl status nginx`
+
+## Åpne port 80 og 443
+
+Lag en [network security group](https://portal.azure.com/#create/Microsoft.NetworkSecurityGroup-ARM) som knyttes til vm-et ovenfor. Åpne port 80 og 443.
+
+Sjekk om port 80 er åpen, åpne `http://<vm-navn>.<azure-grupper>/` i nettleseren. Det skal dukke opp en hilsen fra nginx.
+
 ## certbot
+
+Følg certbots [instruksjoner](https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal)
+
+## Lage db
+
+Gå til [Azure Portal](https://portal.azure.com/) og lage en postgresql-database. Merk deg brukernavn, passord, tjenernavn og databasenavn, man får bruk for det når man lager `.env`-fila lenger nede.
 
 ## skaffe OAuth fra GitHub
 
@@ -18,7 +47,7 @@ Erstatt `127.0.0.1:8000` med navnet til vm-maskinen.
 
 Ta vare på den hemmelige nøkkelen, den får man bruk for senere.
 
-## forberede vm
+## forberede vm for pontoon
 
 ```sh
 sudo apt install -y apt-transport-https
@@ -27,7 +56,7 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 sudo apt-get install -y build-essential libmemcached-dev nodejs postgresql-client python3.10-venv python3-dev git libpq-dev
 ```
 
-## sjekke ut og bygge
+## sjekke ut og bygge pontoon
 
 ```sh
 git clone https://github.com/divvun/pontoon
@@ -39,7 +68,7 @@ pip install -r requirements.txt
 npm run build:prod
 ```
 
-## .env
+### .env
 
 I ~/.bashrc `DOTENV=$HOME/pontoon/.env`
 
@@ -58,7 +87,7 @@ Innhold
 - GITHUB_CLIENT_ID: klient-id fra trinnet ovenfor
 - GITHUB_SECRET_KEY: den hemmelige nøkkelen fra trinnet ovenfor
 
-## alle kommandoer før start
+## alle kommandoer før start av pontoon
 
 ```sh
 ./manage.py migrate # setter opp bl.a. localer
@@ -69,7 +98,7 @@ Innhold
 
 ## installere systemd og starte pontoon
 
-Gå til systemd-mappa, les divvun.md
+[systemd-info](systemd/README.md)
 
 ## egen bruker med ssh-nøkler
 
