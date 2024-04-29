@@ -96,6 +96,7 @@ Innhold
 ```
 
 Kjør `./manage.py runserver` for å se om alt funker.
+Om det fungerer, endre oppsettet i nginx til å forwarde django.
 
 ### Logg inn i pontoon, lag superbruker
 
