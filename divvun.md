@@ -115,7 +115,8 @@ og siden
 ```python
 from django.contrib.auth.models import User
 >>> user = User.objects.get(email="<eposten-til-brukeren-som-nettopp-logget-inn>")
->>> user.is_superuser=True
+>>> user.is_superuser=True # For å kunne administere og legge til prosjekter fra brukergrensesnittet
+>>> user.is_staff=True # For å kunne gå inn på administrasjonssiden, gi brukere tilganger og rettigheter
 >>> user.save()
 ```
 
